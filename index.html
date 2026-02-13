@@ -54,11 +54,11 @@ button{
 </head>
 
 <body>
-
-<!-- ❤️ Background music -->
-<audio autoplay loop>
+<audio id="bgmusic" loop>
   <source src="music.mp3" type="audio/mp3">
 </audio>
+  
+<!-- ❤️ Background music -->
 
 <h1>Babygirl 💕<br>Will you be my Valentine?</h1>
 
@@ -88,7 +88,20 @@ setInterval(()=>{
   setTimeout(()=>heart.remove(),6000);
 },400);
 </script>
+<script>
+const music = document.getElementById("bgmusic");
 
+// play only once
+if (!localStorage.getItem("musicPlaying")) {
+
+    document.body.addEventListener("click", () => {
+        music.play();
+        localStorage.setItem("musicPlaying", "true");
+    }, { once:true });
+
+}
+</script>
+  
 </body>
 </html>
       font-size:18px;

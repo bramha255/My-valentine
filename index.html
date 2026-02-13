@@ -1,39 +1,146 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For Babygirl ❤️</title>
+  <title>For Babygirl ❤️</title>
 
-<style>
-body{
-  text-align:center;
-  font-family: Arial;
-  background: linear-gradient(135deg,#ff758c,#ffb199);
-  margin:0;
-  overflow:hidden;
-  color:white;
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      text-align:center;
+      height:100vh;
+      overflow:hidden;
+      background: linear-gradient(135deg,#ff758c,#ffb199);
+      color:white;
+    }
+
+    .container{
+      margin-top:40px;
+    }
+
+    h1{
+      font-size:40px;
+    }
+
+    img.photo{
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      object-fit:cover;
+      border:5px solid white;
+      margin-top:20px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    button{
+      padding:14px 28px;
+      font-size:18px;
+      border:none;
+      border-radius:10px;
+      margin:15px;
+      cursor:pointer;
+    }
+
+    .yes{background:#ff4d6d;color:white;}
+    .no{background:#eee;color:black;}
+
+    .gif{
+      width:320px;
+      margin-top:30px;
+    }
+
+    .heart{
+      position:absolute;
+      font-size:20px;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float{
+      from{transform:translateY(100vh)}
+      to{transform:translateY(-10vh)}
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 🎵 MUSIC (never stops because no page reload) -->
+<audio id="bgmusic" loop>
+  <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<div class="container" id="content">
+
+  <h1>Babygirl 💕<br>Will you be my Valentine?</h1>
+
+  <img src="photo.jpg" class="photo">
+
+  <br><br>
+
+  <button class="yes" onclick="showYes()">Yes ❤️</button>
+  <button class="no" onclick="showNo()">No 😜</button>
+
+</div>
+
+
+<script>
+/* =========================
+   START MUSIC ON FIRST CLICK
+========================= */
+document.body.addEventListener("click", function(){
+    document.getElementById("bgmusic").play();
+}, { once:true });
+
+
+/* =========================
+   YES PAGE
+========================= */
+function showYes(){
+  document.getElementById("content").innerHTML = `
+      <h1>Yayyyy Babygirl ❤️🥰<br>You just made my whole day!</h1>
+      <img src="yes.gif" class="gif">
+      <br><br>
+      <button onclick="goBack()">Back</button>
+  `;
 }
 
-h1{
-  margin-top:40px;
-  font-size:40px;
+
+/* =========================
+   NO PAGE
+========================= */
+function showNo(){
+  document.getElementById("content").innerHTML = `
+      <h1>Nooo?? 😭<br>Try again… you clicked wrong 😂</h1>
+      <img src="no.gif" class="gif">
+      <br><br>
+      <button onclick="goBack()">Go back ❤️</button>
+  `;
 }
 
-img{
-  width:220px;
-  height:220px;
-  border-radius:50%;
-  object-fit:cover;
-  border:5px solid white;
-  margin-top:20px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+
+/* =========================
+   BACK TO MAIN
+========================= */
+function goBack(){
+  location.reload();
 }
 
-button{
-  padding:14px 28px;
-  font-size:18px;
-  border:none;
-  border-radius:10px;
-  margin:15px;
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.innerHTML="❤️";
+  heart.className="heart";
+  heart.style.left=Math.random()*100+"%";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+},400);
+</script>
+
+</body>
+</html>
   cursor:pointer;
 }
 
